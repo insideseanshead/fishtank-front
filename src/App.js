@@ -3,6 +3,7 @@ import API from "./utils/API";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+import TankDetail from "./pages/TankDetail";
 
 function App() {
   const [loginFormState, setloginFormState] = useState({
@@ -14,6 +15,7 @@ function App() {
     name: "",
     email: "",
     tanks: [],
+    token: '',
     isLoggedIn: false,
   });
 
@@ -25,6 +27,7 @@ function App() {
           name: profileData.name,
           email: profileData.email,
           tanks: profileData.Tanks,
+          token:token,
           isLoggedIn: true,
         });
       } else {
@@ -33,6 +36,7 @@ function App() {
           name: "",
           email: "",
           tanks: [],
+          token:'',
           isLoggedIn: false,
         });
       }
@@ -84,7 +88,9 @@ function App() {
       <Route exact path='/'>
         <Home profile={profileState} />
       </Route>
-       
+      <Route path='/tanks/:id'>
+        <TankDetail profile={profileState} />
+      </Route>
       </Router>
     </div>
   );

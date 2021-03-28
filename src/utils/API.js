@@ -21,6 +21,22 @@ const API = {
         "authorization": `Bearer ${token}`
       }
     }).then(res=>res.json()).catch(err=>null)
+  },
+  getOneTank:function(tankId){
+    return fetch(`${URL_PREFIX}/api/tanks/${tankId}`, {
+    }).then(res=>res.json()).catch(err=>null)
+  },
+  createFish: function(token,fishData){
+    return fetch(`${URL_PREFIX}/api/fish`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": `Bearer ${token}`
+      },
+      body:JSON.stringify(fishData),
+    })
+      .then(res=> res.json())
+      .catch((err) => console.log(err));
   }
 };
 

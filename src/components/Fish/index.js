@@ -1,9 +1,9 @@
 import React from 'react'
 import "./style.css"
 
-const FishThumbnail = (props) => {
-    const height =props.width/16;
-    const width = props.width/4;
+const Fish = (props) => {
+    const height =props.width/4;
+    const width = props.width;
     const styles={
         name:{
             fontSize:height/2,
@@ -32,4 +32,4 @@ const FishThumbnail = (props) => {
     )
 }
 
-export default FishThumbnail
+export default Fish
