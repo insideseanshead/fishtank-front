@@ -1,0 +1,4 @@
+.TanksWrapper {
+    display:flex;
+    flex-wrap:wrap;
+  }

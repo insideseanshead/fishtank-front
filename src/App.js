@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import TankThumbnail from "./components/TankThumb";
 import API from "./utils/API";
-import "./App.css"
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   const [loginFormState, setloginFormState] = useState({
@@ -63,35 +64,28 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={formSubmit}>
-        <input
-          onChange={inputChange}
-          value={loginFormState.email}
-          type="text"
-          name="email"
-          placeholder="email"
-        ></input>
-        <input
-          onChange={inputChange}
-          value={loginFormState.password}
-          type="password"
-          name="password"
-        ></input>
-        <input type="submit" value="login"></input>
-      </form>
-      <div className='TanksWrapper'>
-        {profileState.isLoggedIn ? (
-          profileState.tanks.map((tankObj) => (
-            <TankThumbnail
-              key={tankObj.id}
-              name={tankObj.name}
-              fish={tankObj.Fishes}
-            />
-          ))
-        ) : (
-          <h1>Log in to see your tanks</h1>
-        )}
-      </div>
+      <Router>
+        <form onSubmit={formSubmit}>
+          <input
+            onChange={inputChange}
+            value={loginFormState.email}
+            type="text"
+            name="email"
+            placeholder="email"
+          ></input>
+          <input
+            onChange={inputChange}
+            value={loginFormState.password}
+            type="password"
+            name="password"
+          ></input>
+          <input type="submit" value="login"></input>
+        </form>
+      <Route exact path='/'>
+        <Home profile={profileState} />
+      </Route>
+       
+      </Router>
     </div>
   );
 }

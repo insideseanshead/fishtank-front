@@ -1,6 +1,6 @@
 .TankThumbnail {
     width:20vw;
-    height: 20vh;
+    min-height: 20vh;
     background-color: aqua;
     border: 2px solid black;
     margin:2px;
