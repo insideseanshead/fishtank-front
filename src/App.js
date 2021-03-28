@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import TankThumbnail from "./components/TankThumb";
 import API from "./utils/API";
+import "./App.css"
 
 function App() {
   const [loginFormState, setloginFormState] = useState({
@@ -77,11 +79,19 @@ function App() {
         ></input>
         <input type="submit" value="login"></input>
       </form>
-      {profileState.isLoggedIn ? (
-        profileState.tanks.map((tankObj) => <p>{tankObj.name}</p>)
-      ) : (
-        <h1>Log in to see your tanks</h1>
-      )}
+      <div className='TanksWrapper'>
+        {profileState.isLoggedIn ? (
+          profileState.tanks.map((tankObj) => (
+            <TankThumbnail
+              key={tankObj.id}
+              name={tankObj.name}
+              fish={tankObj.Fishes}
+            />
+          ))
+        ) : (
+          <h1>Log in to see your tanks</h1>
+        )}
+      </div>
     </div>
   );
 }
