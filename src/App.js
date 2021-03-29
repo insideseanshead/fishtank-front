@@ -16,6 +16,7 @@ function App() {
     email: "",
     tanks: [],
     token: '',
+    id:'',
     isLoggedIn: false,
   });
 
@@ -28,6 +29,7 @@ function App() {
           email: profileData.email,
           tanks: profileData.Tanks,
           token:token,
+          id:profileData.id,
           isLoggedIn: true,
         });
       } else {
@@ -37,6 +39,7 @@ function App() {
           email: "",
           tanks: [],
           token:'',
+          id:profileData.id,
           isLoggedIn: false,
         });
       }
