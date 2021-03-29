@@ -20,7 +20,9 @@ function App() {
     isLoggedIn: false,
   });
 
-  useEffect(() => {
+  useEffect(fetchUserData,[]);
+
+  function fetchUserData(){
     const token = localStorage.getItem("token");
     API.getProfile(token).then((profileData) => {
       if (profileData) {
@@ -39,12 +41,12 @@ function App() {
           email: "",
           tanks: [],
           token:'',
-          id:profileData.id,
+          id:'',
           isLoggedIn: false,
         });
       }
     });
-  }, []);
+  }
 
   const inputChange = (event) => {
     const { name, value } = event.target;
@@ -69,6 +71,10 @@ function App() {
     });
   };
 
+  const deleteTank = id=>{
+    // Figure out why profile isnt working
+  }
+
   return (
     <div className="App">
       <Router>
@@ -89,7 +95,7 @@ function App() {
           <input type="submit" value="login"></input>
         </form>
       <Route exact path='/'>
-        <Home profile={profileState} />
+        <Home profile={profileState} fetchData={fetchUserData} delTank = {deleteTank} />
       </Route>
       <Route path='/tanks/:id'>
         <TankDetail profile={profileState} />

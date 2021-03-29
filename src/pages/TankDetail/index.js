@@ -51,6 +51,7 @@ const TankDetail = (props) => {
           setTank({
             name: tankData.name,
             fish: tankData.Fishes,
+            userId: tankData.UserId
           });
         }
       });

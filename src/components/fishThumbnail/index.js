@@ -1,6 +1,7 @@
 import React from 'react'
 import "./style.css"
 
+
 const FishThumbnail = (props) => {
     const height =props.width/16;
     const width = props.width/4;
