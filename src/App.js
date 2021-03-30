@@ -4,6 +4,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import TankDetail from "./pages/TankDetail";
+import NavBar from "./components/NavBar";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [loginFormState, setloginFormState] = useState({
@@ -80,24 +82,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <form onSubmit={formSubmit}>
-          <input
-            onChange={inputChange}
-            value={loginFormState.email}
-            type="text"
-            name="email"
-            placeholder="email"
-          ></input>
-          <input
-            onChange={inputChange}
-            value={loginFormState.password}
-            type="password"
-            name="password"
-          ></input>
-          <input type="submit" value="login"></input>
-        </form>
+        <NavBar profile={profileState} inputChange={inputChange} loginFormState={loginFormState} formSubmit={formSubmit} />
       <Route exact path='/'>
-        <Home profile={profileState} fetchData={fetchUserData} delTank = {deleteTank} />
+        <Home />
+      </Route>
+      <Route exact path='/profile'>
+        <ProfilePage profile={profileState} fetchData={fetchUserData} delTank = {deleteTank} />
       </Route>
       <Route path='/tanks/:id'>
         <TankDetail profile={profileState} />

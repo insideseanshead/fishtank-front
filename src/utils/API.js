@@ -22,6 +22,10 @@ const API = {
       }
     }).then(res=>res.json()).catch(err=>null)
   },
+  getAllTanks:function(){
+    return fetch(`${URL_PREFIX}/api/tanks`, {
+    }).then(res=>res.json()).catch(err=>null)
+  },
   getOneTank:function(tankId){
     return fetch(`${URL_PREFIX}/api/tanks/${tankId}`, {
     }).then(res=>res.json()).catch(err=>null)

@@ -1,0 +1,6 @@
+.NavBar {
+    display:flex;
+    justify-content:space-between;
+    min-height: 5vh;
+    background: linear-gradient(120deg, orange 0%, orange 50%, blue 50%, blue 100%)
+}

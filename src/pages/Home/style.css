@@ -1,4 +1,4 @@
-.TanksWrapper {
-    display:flex;
-    flex-wrap:wrap;
-  }
+.TankWrapper {
+    display: flex;
+    flex-wrap: wrap
+}

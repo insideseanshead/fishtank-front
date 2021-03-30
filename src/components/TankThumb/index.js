@@ -9,7 +9,7 @@ const TankThumbnail = (props) => {
       <Link to={`/tanks/${props.id}`}>
         <h3>{props.name}</h3>
       </Link>
-      <button onClick={()=>props.delTank(props.id)}>Delete Tank</button>
+      {props.detTank?<button onClick={()=>props.delTank(props.id)}>Delete Tank</button>:null}
       {props.fish.map((fishObj) => (
         <FishThumbnail
           name={fishObj.name}

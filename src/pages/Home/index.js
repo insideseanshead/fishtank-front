@@ -1,62 +1,28 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import AddTankForm from "../../components/AddTankForm";
-import TankThumbnail from "../../components/TankThumb";
-import API from "../../utils/API";
+import React, {useState,useEffect} from 'react'
+import API from "../../utils/API"
+import TankThumbnail from "../../components/TankThumb"
+import './style.css'
 
-const Home = (props) => {
-  const [tankFormState, setTankFormState] = useState({
-    name: "",
-    userId: props.profile.id,
-  });
+const Home = () => {
+    const [tanks, setTanks] = useState([])
+        API.getAllTanks().then(tanksData=>{
+            setTanks(tanksData)
+        })
+    useEffect(()=>{
 
-  const handleInputChange = (event) => {
-    setTankFormState({
-      name: event.target.value,
-    });
-  };
+    },[])
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    API.createTank(props.profile.token, tankFormState).then((data) => {
-      setTankFormState({
-        name: "",
-      });
-      props.fetchData();
-    });
-  };
-
-  return (
-    <div className="Home">
-      <div className="TanksWrapper">
-        {props.profile.isLoggedIn ? (
-          <AddTankForm
-            profile={props.profile}
-            handleInputChange={handleInputChange}
-            handleFormSubmit={handleFormSubmit}
-            tankName={tankFormState.name}
-          />
-        ) : (
-          <p>Login to add a tank.</p>
-        )}
-        {props.profile.isLoggedIn ? (
-          props.profile.tanks.map((tankObj) => (
-            
-              <TankThumbnail
+    return (
+        <div className='TanksWrapper'>
+            <h1>Look at all these fishes</h1>
+            {tanks.map(tankObj=> <TankThumbnail
                 key={tankObj.id}
                 id={tankObj.id}
                 name={tankObj.name}
                 fish={tankObj.Fishes}
-                delTank={props.delTank}
-              />
-            
-          ))
-        ) : (
-          <h1>Log in to see your tanks</h1>
-        )}
-      </div>
-    </div>
-  );
-};
+              />)}
+        </div>
+    )
+}
 
-export default Home;
+export default Home
