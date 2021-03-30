@@ -72,7 +72,9 @@ function App() {
   };
 
   const deleteTank = id=>{
-    // Figure out why profile isnt working
+    API.deleteTank(profileState.token,id).then(data=>{
+      fetchUserData();
+    })
   }
 
   return (
