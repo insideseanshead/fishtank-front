@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddTankForm from "../../components/AddTankForm";
+import FishCard from "../../components/FishCard";
 import TankThumbnail from "../../components/TankThumb";
 import API from "../../utils/API";
 
@@ -54,6 +55,9 @@ const ProfilePage = (props) => {
         ) : (
           <h1>Log in to see your tanks</h1>
         )}
+      </div>
+      <div className="FishWrapper">
+          {props.profile.fish.map(fishObj=><FishCard key={fishObj.id} fishData={fishObj} />)}
       </div>
     </div>
   );

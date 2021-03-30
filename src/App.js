@@ -32,6 +32,7 @@ function App() {
           name: profileData.name,
           email: profileData.email,
           tanks: profileData.Tanks,
+          fish:profileData.Fishes,
           token:token,
           id:profileData.id,
           isLoggedIn: true,
@@ -67,6 +68,7 @@ function App() {
           name: profileData.name,
           email: profileData.email,
           tanks: profileData.Tanks,
+          id: profileData.id,
           isLoggedIn: true,
         });
       });
