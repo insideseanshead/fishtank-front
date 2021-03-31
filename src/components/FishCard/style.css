@@ -1,0 +1,7 @@
+.FishCard {
+    width:20vw;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px black;
+    margin:2px;
+    border:2px solid black
+}

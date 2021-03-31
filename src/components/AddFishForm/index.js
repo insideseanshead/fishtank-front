@@ -6,7 +6,7 @@ const AddFishForm = (props) => {
         <input onChange={props.handleInputChange} value={props.fishFormState.name} type='text' name='name' placeholder='name' />
         <input onChange={props.handleInputChange} value={props.fishFormState.width} type='number' name='width' placeholder='width' />
         <input onChange={props.handleInputChange} value={props.fishFormState.color} type='color' name='color' placeholder='color' />
-        <input type='submit' value='add fish!' />
+        <input type='submit' value='Submit' />
       </form>
     )
 }

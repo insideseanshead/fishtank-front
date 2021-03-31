@@ -1,4 +1,4 @@
-const URL_PREFIX = 'http://localhost:8080'
+const URL_PREFIX = "http://localhost:8080";
 // const URL_PREFIX = 'https://seanfish-api.herokuapp.com'
 
 const API = {
@@ -9,61 +9,80 @@ const API = {
       headers: {
         "Content-Type": "application/json",
       },
-      body:JSON.stringify(userData),
+      body: JSON.stringify(userData),
     })
-      .then(res=> res.json())
+      .then((res) => res.json())
       .catch((err) => console.log(err));
   },
 
-  getProfile: function(token){
+  getProfile: function (token) {
     return fetch(`${URL_PREFIX}/api/users/secretProfile`, {
-      headers:{
-        "authorization": `Bearer ${token}`
-      }
-    }).then(res=>res.json()).catch(err=>null)
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => null);
   },
-  getAllTanks:function(){
-    return fetch(`${URL_PREFIX}/api/tanks`, {
-    }).then(res=>res.json()).catch(err=>null)
+  getAllTanks: function () {
+    return fetch(`${URL_PREFIX}/api/tanks`, {})
+      .then((res) => res.json())
+      .catch((err) => null);
   },
-  getOneTank:function(tankId){
-    return fetch(`${URL_PREFIX}/api/tanks/${tankId}`, {
-    }).then(res=>res.json()).catch(err=>null)
+  getOneTank: function (tankId) {
+    return fetch(`${URL_PREFIX}/api/tanks/${tankId}`, {})
+      .then((res) => res.json())
+      .catch((err) => null);
   },
-  createTank:function(token,tankData){
+  createTank: function (token, tankData) {
     return fetch(`${URL_PREFIX}/api/tanks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": `Bearer ${token}`
+        authorization: `Bearer ${token}`,
       },
-      body:JSON.stringify(tankData),
+      body: JSON.stringify(tankData),
     })
-      .then(res=> res.json())
+      .then((res) => res.json())
       .catch((err) => console.log(err));
   },
-  deleteTank:function(token,tankId){
+  deleteTank: function (token, tankId) {
     return fetch(`${URL_PREFIX}/api/tanks/${tankId}`, {
       method: "DELETE",
       headers: {
-        "authorization": `Bearer ${token}`
-      }
+        authorization: `Bearer ${token}`,
+      },
     })
-      .then(res=> res.json())
+      .then((res) => res.json())
       .catch((err) => console.log(err));
   },
-  createFish: function(token,fishData){
+  getOneFish: function (fishId) {
+    return fetch(`${URL_PREFIX}/api/fish/${fishId}`, {})
+      .then((res) => res.json())
+      .catch((err) => null);
+  },
+  createFish: function (token, fishData) {
     return fetch(`${URL_PREFIX}/api/fish`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": `Bearer ${token}`
+        authorization: `Bearer ${token}`,
       },
-      body:JSON.stringify(fishData),
+      body: JSON.stringify(fishData),
     })
-      .then(res=> res.json())
+      .then((res) => res.json())
       .catch((err) => console.log(err));
-  }
+  },
+  deleteFish: function (token, fishId) {
+    return fetch(`${URL_PREFIX}/api/fish/${fishId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .catch((err) => null);
+  },
 };
 
 module.exports = API;

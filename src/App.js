@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import TankDetail from "./pages/TankDetail";
 import NavBar from "./components/NavBar";
 import ProfilePage from "./pages/ProfilePage";
+import FishDetail from "./pages/FishDetail";
 
 function App() {
   const [loginFormState, setloginFormState] = useState({
@@ -17,14 +18,14 @@ function App() {
     name: "",
     email: "",
     tanks: [],
-    token: '',
-    id:'',
+    token: "",
+    id: "",
     isLoggedIn: false,
   });
 
-  useEffect(fetchUserData,[]);
+  useEffect(fetchUserData, []);
 
-  function fetchUserData(){
+  function fetchUserData() {
     const token = localStorage.getItem("token");
     API.getProfile(token).then((profileData) => {
       if (profileData) {
@@ -32,9 +33,9 @@ function App() {
           name: profileData.name,
           email: profileData.email,
           tanks: profileData.Tanks,
-          fish:profileData.Fishes,
-          token:token,
-          id:profileData.id,
+          fish: profileData.Fishes,
+          token: token,
+          id: profileData.id,
           isLoggedIn: true,
         });
       } else {
@@ -43,8 +44,8 @@ function App() {
           name: "",
           email: "",
           tanks: [],
-          token:'',
-          id:'',
+          token: "",
+          id: "",
           isLoggedIn: false,
         });
       }
@@ -75,25 +76,44 @@ function App() {
     });
   };
 
-  const deleteTank = id=>{
-    API.deleteTank(profileState.token,id).then(data=>{
+  const deleteTank = (id) => {
+    API.deleteTank(profileState.token, id).then((data) => {
       fetchUserData();
-    })
-  }
+    });
+  };
+
+  const deleteFish = (id) => {
+    API.deleteFish(profileState.token, id).then((data) => {
+      fetchUserData();
+    });
+  };
 
   return (
     <div className="App">
       <Router>
-        <NavBar profile={profileState} inputChange={inputChange} loginFormState={loginFormState} formSubmit={formSubmit} />
-      <Route exact path='/'>
-        <Home />
-      </Route>
-      <Route exact path='/profile'>
-        <ProfilePage profile={profileState} fetchData={fetchUserData} delTank = {deleteTank} />
-      </Route>
-      <Route path='/tanks/:id'>
-        <TankDetail profile={profileState} />
-      </Route>
+        <NavBar
+          profile={profileState}
+          inputChange={inputChange}
+          loginFormState={loginFormState}
+          formSubmit={formSubmit}
+        />
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/profile">
+          <ProfilePage
+            profile={profileState}
+            fetchData={fetchUserData}
+            delTank={deleteTank}
+            delFish={deleteFish}
+          />
+        </Route>
+        <Route path="/fish/:id">
+          <FishDetail />
+        </Route>
+        <Route path="/tanks/:id">
+          <TankDetail profile={profileState} />
+        </Route>
       </Router>
     </div>
   );

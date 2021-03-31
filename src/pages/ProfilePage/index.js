@@ -4,11 +4,12 @@ import AddTankForm from "../../components/AddTankForm";
 import FishCard from "../../components/FishCard";
 import TankThumbnail from "../../components/TankThumb";
 import API from "../../utils/API";
+import "./style.css";
 
 const ProfilePage = (props) => {
   const [tankFormState, setTankFormState] = useState({
     name: "",
-    userId: props.profile?props.profile.id:''
+    userId: props.profile.id,
   });
 
   const handleInputChange = (event) => {
@@ -42,22 +43,28 @@ const ProfilePage = (props) => {
         )}
         {props.profile.isLoggedIn ? (
           props.profile.tanks.map((tankObj) => (
-            
-              <TankThumbnail
-                key={tankObj.id}
-                id={tankObj.id}
-                name={tankObj.name}
-                fish={tankObj.Fishes}
-                delTank={props.delTank}
-              />
-            
+            <TankThumbnail
+              key={tankObj.id}
+              id={tankObj.id}
+              name={tankObj.name}
+              fish={tankObj.Fishes}
+              delTank={props.delTank}
+            />
           ))
         ) : (
           <h1>Log in to see your tanks</h1>
         )}
       </div>
       <div className="FishWrapper">
-          {props.profile.fish.map(fishObj=><FishCard key={fishObj.id} fishData={fishObj} />)}
+        {props.profile.isLoggedIn
+          ? props.profile.fish.map((fishObj) => (
+              <FishCard
+                key={fishObj.id}
+                fishData={fishObj}
+                delFish={props.delFish}
+              />
+            ))
+          : null}
       </div>
     </div>
   );
